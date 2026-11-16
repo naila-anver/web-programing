@@ -1,27 +1,176 @@
-<html>
-<head>
-<title>Restaurent</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-<header class="navbar">
-<div class="logo">The Cozy Spoon</div>
-<nav>
-<ul class="link-clr">
-<div class="head">
-<li><a href="#home">Home</a></li>
-<li><a href="#menu">Menu</a></li>
-<li><a href="#about">About</a></li>
-<li><a href="#contact">Contact</a></li>
-</div>
-</ul>
-</nav>
-</header>
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    tools:layout_editor_absoluteX="-15dp"
+    tools:layout_editor_absoluteY="11dp">
 
-<section id="home" class="hero">
-<div class="hero-content">
-<h1>Fresh, Local, and Delicious</h1>
-<p>Experience artisanal dining right in the heart of the city.</p>
-<a href="#menu" class="btn">View Our Menu</a>
-</div>
-</section>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Result"
+        tools:layout_editor_absoluteX="121dp"
+        tools:layout_editor_absoluteY="396dp" />
+
+    <EditText
+        android:id="@+id/editTextText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:text="result"
+        tools:layout_editor_absoluteX="95dp"
+        tools:layout_editor_absoluteY="100dp" />
+
+    <Button
+        android:id="@+id/btn1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ADD"
+        tools:layout_editor_absoluteX="27dp"
+        tools:layout_editor_absoluteY="397dp" />
+
+    <Button
+        android:id="@+id/btn2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SUB"
+        tools:layout_editor_absoluteX="120dp"
+        tools:layout_editor_absoluteY="397dp" />
+
+    <Button
+        android:id="@+id/btn4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DIV"
+        tools:layout_editor_absoluteX="305dp"
+        tools:layout_editor_absoluteY="393dp" />
+
+    <Button
+        android:id="@+id/btn3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MUL"
+        tools:layout_editor_absoluteX="214dp"
+        tools:layout_editor_absoluteY="395dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="66dp"
+        android:layout_height="43dp"
+        android:text="number 1"
+        tools:layout_editor_absoluteX="77dp"
+        tools:layout_editor_absoluteY="229dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="66dp"
+        android:layout_height="35dp"
+        android:text="number 2"
+        tools:layout_editor_absoluteX="77dp"
+        tools:layout_editor_absoluteY="272dp" />
+
+    <EditText
+        android:id="@+id/editTextText3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberSigned"
+        android:text=""
+        tools:layout_editor_absoluteX="149dp"
+        tools:layout_editor_absoluteY="214dp" />
+
+    <EditText
+        android:id="@+id/editTextText4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberSigned"
+        android:text=""
+        tools:layout_editor_absoluteX="151dp"
+        tools:layout_editor_absoluteY="260dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+package com.example.calculator;
+
+import android.os.Bundle; import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView; import android.widget.Toast;
+
+import androidx.activity.EdgeToEdge; import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+    EditText editText3, editText4;
+    Button btn1, btn2, btn3, btn4;
+    TextView result;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+
+        editText3 = findViewById(R.id.editTextText3);
+        editText4 = findViewById(R.id.editTextText4);
+
+        btn1 = findViewById(R.id.btn1);
+        btn2 = findViewById(R.id.btn2);
+        btn3 = findViewById(R.id.btn3);
+        btn4 = findViewById(R.id.btn4);
+
+        result = findViewById(R.id.result);
+
+        btn1.setOnClickListener(v -> {
+            int num1 = Integer.parseInt(editText3.getText().toString());
+            int num2 = Integer.parseInt(editText4.getText().toString());
+
+            int res = num1 + num2;
+            result.setText("Addition = " + res);
+        });
+
+        btn2.setOnClickListener(v -> {
+            int num1 = Integer.parseInt(editText3.getText().toString());
+            int num2 = Integer.parseInt(editText4.getText().toString());
+
+            int res = num1 - num2;
+            result.setText("Subtraction = " + res);
+        });
+
+        btn3.setOnClickListener(v -> {
+            int num1 = Integer.parseInt(editText3.getText().toString());
+            int num2 = Integer.parseInt(editText4.getText().toString());
+
+            int res = num1 * num2;
+            result.setText("Multiplication = " + res);
+        });
+
+        btn4.setOnClickListener(v -> {
+            int num1 = Integer.parseInt(editText3.getText().toString());
+            int num2 = Integer.parseInt(editText4.getText().toString());
+            int res = num1 / num2;
+            result.setText("division = " + res);
+
+        });
+    }
+
+
+}
+
